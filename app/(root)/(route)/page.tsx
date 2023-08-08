@@ -1,9 +1,11 @@
-import React from 'react'
+
+import {UserButton} from '@clerk/nextjs'
+
 
 function page() {
   return (
     <div>
-       this is main page(proteced )
+       <UserButton afterSignOutUrl='/'/>
 
     </div>
   )
