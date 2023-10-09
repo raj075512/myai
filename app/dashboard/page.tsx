@@ -25,7 +25,9 @@ const dashboard = (props: Props) => {
         <Separator />
  
         <div className=" text-center ">
+            
             <h2> you  have no text  yet ..</h2>
+            
           
         </div>
 
