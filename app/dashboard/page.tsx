@@ -27,11 +27,11 @@ const dashboard = (props: Props) => {
         <div className=" text-center ">
           <h2> you have no text yet ..</h2>
         </div>
-        <Separator />
+        
 
         {/* // display all tthe nodes // */}
 
-        <div className="grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-2 ">
+        <div className="grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-2 m-2 ">
           <CreateNoteDialog />
         </div>
       </div>
