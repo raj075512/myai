@@ -1,3 +1,4 @@
+import CreateNoteDialog from "@/components/ui/CreateNoteDialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { UserButton } from "@clerk/nextjs";
@@ -21,16 +22,18 @@ const dashboard = (props: Props) => {
             <Button variant="outline">create new</Button>
           </div>
         </div>
-    
-        <Separator />
- 
-        <div className=" text-center ">
-            
-            <h2> you  have no text  yet ..</h2>
-            
-          
-        </div>
 
+        <Separator />
+        <div className=" text-center ">
+          <h2> you have no text yet ..</h2>
+        </div>
+        <Separator />
+
+        {/* // display all tthe nodes // */}
+
+        <div className="grid sm:grid-cols-3 md:grid-cols-5 grid-cols-1 gap-2 ">
+          <CreateNoteDialog />
+        </div>
       </div>
     </div>
   );
