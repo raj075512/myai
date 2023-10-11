@@ -8,10 +8,10 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "./dialog"
+  } from "./ui/dialog"
   
-import { Input } from './input'
-import { Button } from './button'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 
 type Props ={
 }
@@ -20,10 +20,10 @@ type Props ={
 
 const CreateNoteDialog = (props: Props) => {
  
-    const [input, setInput] = useState("")
+    const [input, setInput] = React.useState("")
     
-    const handleSubmit=()=>{
-
+    const handleSubmit=(e)=>{
+     e.preventDefault();
     }
     return (
       
