@@ -22,9 +22,10 @@ const CreateNoteDialog = (props: Props) => {
  
     const [input, setInput] = React.useState("")
     
-    const handleSubmit=(e)=>{
-     e.preventDefault();
-    }
+   const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
+      e.preventDefault();
+
+   }
     return (
       
        <Dialog>
