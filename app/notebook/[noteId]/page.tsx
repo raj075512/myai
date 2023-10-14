@@ -3,6 +3,7 @@
 import React from 'react'
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
+import { clerk } from "@/lib/clerk-server";
 import { $notes } from '@/lib/db/schema';
 
  import { db } from '@/lib/db';
@@ -20,6 +21,9 @@ type Props = {
       return redirect("/dashboard");
     }
     // const user = await clerk.users.getUser(userId);
+   
+    const user = await clerk.users.getUser(userId);
+
     const notes = await db
       .select()
       .from($notes)
