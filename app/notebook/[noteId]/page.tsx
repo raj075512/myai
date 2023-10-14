@@ -9,6 +9,8 @@ import  Link  from "next/link"
  import { db } from '@/lib/db';
 import { and ,eq } from 'drizzle-orm';
 import { Button } from '@/components/ui/button';
+import DeleteButton from "@/components/DeleteButton";
+import TipTapEditor from "@/components/TipTapEditor";
 
 
 type Props = {
