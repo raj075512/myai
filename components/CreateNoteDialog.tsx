@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import {
     Dialog,
     DialogContent,
@@ -12,18 +12,58 @@ import {
   
 import { Input } from './ui/input'
 import { Button } from './ui/button'
+import { useMutation } from '@tanstack/react-query' ;
+
+import axios from "axios"; 
+import { useRouter } from 'next/navigation' ;
 
 type Props ={
-}
+};
 
   
 
 const CreateNoteDialog = (props: Props) => {
  
-    const [input, setInput] = React.useState("")
-    
+// store the input //
+
+    const [input, setInput] = React.useState("");
+    const router = useRouter();
+    // for heading the end point ('/api/createNoteBook')  //
+
+    const createNoteBook=useMutation({
+     mutationFn:async ()=>{
+      const response =await axios.post("/api/createNotebook",{
+         name:input,
+      });
+      return response.data;
+     },
+    }) ;
+
+
+
+
    const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
       e.preventDefault();
+       
+      if(input  === "")
+      {
+       window.alert('please enter the name of notebook');
+       return ;
+      }
+      createNoteBook.mutate(undefined,{
+
+      onSuccess:({note_id})=>{
+
+         console.log("notebook is created",{note_id});
+         router.push(`/notebook/${note_id}`);
+
+      },onError:(error) =>{
+
+         console.error(error);
+         window.alert("failed to create the new notebook ");
+
+      }
+      });
 
    }
     return (
@@ -64,4 +104,4 @@ const CreateNoteDialog = (props: Props) => {
     )
 }
 
-export default CreateNoteDialog
+export default CreateNoteDialog;
