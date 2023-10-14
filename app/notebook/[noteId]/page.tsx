@@ -1,12 +1,35 @@
+
+
 import React from 'react'
+import { auth } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
+import { $notes } from '@/lib/db/schema';
 
-type Props= {
-    params:{
-        noteId:string 
+ import { db } from '@/lib/db';
+import { and ,eq } from 'drizzle-orm';
+
+type Props = {
+    params: {
+      noteId: string;
+    };
+  };
+  
+  const NotebookPage = async ({ params: { noteId } }: Props) => {
+    const { userId } = await auth();
+    if (!userId) {
+      return redirect("/dashboard");
     }
-}
-
-const NoteBookPage = async ( {params :{noteId}}  : Props) => {
+    // const user = await clerk.users.getUser(userId);
+    const notes = await db
+      .select()
+      .from($notes)
+      .where(and(eq($notes.id, parseInt(noteId)), eq($notes.userId, userId)));
+  
+    if (notes.length != 1) {
+      return redirect("/dashboard");
+    }
+    const note = notes[0];
+  
     return (
         <div>
              {noteId}
@@ -14,4 +37,4 @@ const NoteBookPage = async ( {params :{noteId}}  : Props) => {
     )
 }
 
-export default NoteBookPage
+export default NotebookPage;
